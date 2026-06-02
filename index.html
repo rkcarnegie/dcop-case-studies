@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics Case Studies</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Raleway:wght@600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', sans-serif; background: #f5f3ee; color: #2c2c2c; }
+  .page-wrap { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+  .page-header { padding: 48px 0 28px; border-bottom: 2px solid #5a7a2e; text-align: center; }
+  .page-label { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #7a8c5e; margin-bottom: 10px; font-weight: 700; }
+  .page-header h1 { font-family: 'Raleway', sans-serif; font-size: 32px; font-weight: 700; color: #2c3a1e; line-height: 1.2; margin-bottom: 10px; }
+  .page-header p { font-size: 16px; color: #5a5a4a; line-height: 1.6; }
+  .filter-section { padding: 20px 0; text-align: center; background: #f5f3ee; border-bottom: 1px solid #ddd8cc; }
+  .filter-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; align-items: center; }
+  .filter-group-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8a8a7a; display: flex; align-items: center; }
+  .filter-btn { padding: 5px 14px; border-radius: 3px; border: 1px solid #c8c0b0; background: #fff; font-size: 13px; color: #4a4a3a; cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 700; transition: all 0.12s; white-space: nowrap; }
+  .filter-btn:hover { border-color: #5a7a2e; color: #5a7a2e; }
+  .filter-btn.active-cat { background: #5a7a2e; color: #fff; border-color: #5a7a2e; }
+  .filter-btn.active-type { background: #c49a1a; color: #fff; border-color: #c49a1a; }
+  .search-wrap { padding: 16px 0; text-align: center; background: #f5f3ee; border-bottom: 1px solid #ddd8cc; }
+  .search-input { width: 100%; max-width: 600px; padding: 9px 16px; border: 1px solid #c8c0b0; border-radius: 3px; font-size: 14px; color: #2c2c2c; background: #fff; outline: none; font-family: 'Lato', sans-serif; }
+  .search-input:focus { border-color: #5a7a2e; }
+  .grid { padding: 36px 0 64px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .card { background: #fff; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.15s; border: 1px solid #ddd8cc; }
+  .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.10); }
+  .card-top { height: 8px; }
+  .card-body { padding: 22px 22px 16px; flex: 1; display: flex; flex-direction: column; }
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+  .tag { padding: 2px 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; border-radius: 2px; }
+  .tag-cat-understanding { background: #e8f0dc; color: #3a5c1a; }
+  .tag-cat-improvement { background: #e8e4f4; color: #3c3070; }
+  .tag-cat-efficiency { background: #fdf0d0; color: #7a5010; }
+  .tag-cat-training { background: #e8e8e8; color: #3a3a3a; }
+  .tag-type-da { background: #dceaf5; color: #1a4870; }
+  .tag-type-ai { background: #ddf0e4; color: #1a5c30; }
+  .tag-type-governance { background: #eeebe4; color: #4a4030; }
+  .tag-type-process { background: #e0eef8; color: #1a3a6a; }
+  .tag-type-technology { background: #f4dce8; color: #6a1a40; }
+  .tag-divider { width: 1px; background: #ddd8cc; margin: 0 2px; align-self: stretch; min-height: 14px; }
+  .card h3 { font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 700; line-height: 1.4; margin-bottom: 10px; color: #2c3a1e; }
+  .card p { font-size: 14px; color: #5a5a4a; line-height: 1.7; flex: 1; }
+  .outcome { margin-top: 14px; padding-top: 14px; border-top: 1px solid #eee8dc; }
+  .outcome-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9a8a6a; margin-bottom: 4px; }
+  .outcome-value { font-size: 13px; font-weight: 700; color: #3a5c1a; line-height: 1.4; }
+  .card-footer { padding: 12px 22px; border-top: 1px solid #eee8dc; display: flex; justify-content: space-between; align-items: center; }
+  .card-meta { font-size: 11px; color: #9a9a8a; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-link { font-size: 12px; font-weight: 700; color: #5a7a2e; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-link::after { content: ' \2192'; }
+  .no-results { padding: 48px; text-align: center; color: #9a9a8a; font-size: 15px; display: none; }
+  .detail { display: none; background: #f5f3ee; min-height: 100vh; }
+  .detail-nav { padding: 16px 32px; background: #fff; border-bottom: 1px solid #ddd8cc; }
+  .back-btn { font-size: 13px; font-weight: 700; color: #5a7a2e; cursor: pointer; border: none; background: none; padding: 0; font-family: 'Lato', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .back-btn::before { content: '\2190  '; }
+  .detail-inner { max-width: 760px; margin: 0 auto; padding: 48px 32px 80px; }
+  .detail-inner .card-tags { margin-bottom: 16px; }
+  .detail-inner h1 { font-family: 'Raleway', sans-serif; font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; color: #2c3a1e; }
+  .detail-meta-line { font-size: 12px; color: #9a9a8a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #ddd8cc; }
+  .detail-section { margin-bottom: 28px; }
+  .detail-section h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #9a8a6a; margin-bottom: 10px; }
+  .detail-section p { font-size: 16px; line-height: 1.8; color: #3a3a2a; }
+  .result-box { background: #fff; border: 1px solid #ddd8cc; border-left: 4px solid #5a7a2e; padding: 20px 22px; margin-top: 16px; }
+  .result-box .big { font-family: 'Raleway', sans-serif; font-size: 18px; font-weight: 700; color: #2c3a1e; line-height: 1.35; }
+  .result-box .desc { font-size: 14px; color: #5a5a4a; margin-top: 6px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="list-view">
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-label">Data and AI Discovery &middot; Internal Case Studies</div>
+      <h1>Communities of Practice in Action</h1>
+      <p>A portfolio of work delivered in collaboration, from analytical insight to process refinement and beyond.</p>
+    </div>
+    <div class="filter-section">
+      <div class="filter-row" id="cat-filters">
+        <span class="filter-group-label">Category&nbsp;&nbsp;</span>
+        <button class="filter-btn active-cat" onclick="setFilter('cat','All',this)">All</button>
+        <button class="filter-btn" onclick="setFilter('cat','Understanding',this)">Understanding</button>
+        <button class="filter-btn" onclick="setFilter('cat','Improvement',this)">Improvement</button>
+        <button class="filter-btn" onclick="setFilter('cat','Efficiency',this)">Efficiency</button>
+        <button class="filter-btn" onclick="setFilter('cat','Training',this)">Training</button>
+        <span style="width:1px;background:#ddd8cc;margin:0 12px;align-self:stretch;"></span>
+        <span class="filter-group-label">Type&nbsp;&nbsp;</span>
+        <button class="filter-btn active-type" onclick="setFilter('type','All',this)">All</button>
+        <button class="filter-btn" onclick="setFilter('type','D&amp;A',this)">D&amp;A</button>
+        <button class="filter-btn" onclick="setFilter('type','AI',this)">AI</button>
+        <button class="filter-btn" onclick="setFilter('type','Process',this)">Process</button>
+        <button class="filter-btn" onclick="setFilter('type','Technology',this)">Technology</button>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <input class="search-input" id="search" type="text" placeholder="Search case studies..." oninput="renderFiltered()" />
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="no-results" id="no-results">No case studies match your search.</div>
+  </div>
+</div>
+
+<div class="detail" id="detail-view">
+  <div class="detail-nav">
+    <button class="back-btn" onclick="showList()">Back to all case studies</button>
+  </div>
+  <div class="detail-inner">
+    <div class="card-tags" id="d-tags"></div>
+    <h1 id="d-title"></h1>
+    <div class="detail-meta-line" id="d-meta"></div>
+    <div class="detail-section"><h2>The Challenge</h2><p id="d-challenge"></p></div>
+    <div class="detail-section"><h2>Our Approach</h2><p id="d-approach"></p></div>
+    <div class="detail-section">
+      <h2>Results</h2>
+      <p id="d-results"></p>
+      <div class="result-box">
+        <div class="big" id="d-metric"></div>
+        <div class="desc" id="d-metric-desc"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var cases = [
+  {id:1,title:"Payment Management Dashboard",cats:["Efficiency","Understanding"],types:["D&A","Process"],team:"Support Team",
+   summary:"Replaced fragmented payment tracking with a purpose-built dashboard that gives the Support team a clear view of every payment in the pipeline, reducing back-and-forth and enabling faster, more confident action.",
+   challenge:"The team lacked a consolidated view of grantee payments across different stages and conditions. Visibility gaps created inefficiencies; staff spent time chasing statuses, reconciling information across systems, and managing exceptions reactively rather than proactively.",
+   approach:"Through a structured discovery and iterative build process, we worked closely with the Support team to understand their workflow and translate it into a Power BI dashboard connected directly to the grants management system. Each component was validated against real data before going to production.",
+   results:"The published dashboard consolidates upcoming payments, flagged payments, past due payments, and organizations with overdue reports into a single, always-current view filterable by program area. The team now has the visibility they need to plan ahead, catch issues early, and spend less time on manual follow-up.",
+   metric:"Transformed payment tracking from reactive to proactive, giving the team visibility, control, and time back",
+   metricDesc:"A dashboard that surfaces the full payment pipeline in one place, giving the Support team the clarity and control to act with confidence at every stage."},
+
+  {id:2,title:"Unlocking Insights from Program Application Data",cats:["Understanding","Improvement"],types:["D&A","AI"],team:"Program Management",
+   summary:"Transformed multi-year application data into a strategic findings report that gave program leadership clear, evidence-based direction for refining a competitive grant program, establishing a repeatable model for doing it every year.",
+   challenge:"Program leadership wanted to move beyond intuition when evaluating what makes applications succeed. The insights were buried in a complex dataset spanning hundreds of applicants, multiple reviewers, and dozens of application attributes, with no existing process for systematically learning from that data.",
+   approach:"Through structured consultation sessions, we helped the team sharpen their business questions and confirm the right dataset. We cleaned and unified the data, applied AI-assisted classification to surface thematic patterns, and performed a multi-dimensional analysis comparing successful applications against the rest across all key features.",
+   results:"The engagement produced a strategic findings report, a first-of-its-kind deliverable for the program. It identified structural patterns that predict success, revealed underserved recruitment opportunities, and surfaced year-over-year shifts in what the selection process rewards. Leadership confirmed they will repeat this analysis annually as each new cohort is selected.",
+   metric:"Actionable insights that deepened understanding and drove meaningful program refinement",
+   metricDesc:"A findings report that surfaced what the data had been hiding, equipping the program team with the evidence they needed to steer smarter, recruit better, and invest with confidence going forward."},
+
+  {id:3,title:"From Manual to Automated: A Custom Operational Reporting System",cats:["Efficiency","Improvement"],types:["D&A","Process","Technology"],team:"Support Team",
+   summary:"Replaced a time-consuming, error-prone manual reporting process with a fully automated system, eliminating the inefficiency of ad-hoc data gathering and delivering a clean, dynamic report that runs itself.",
+   challenge:"The team was managing a recurring operational reporting process entirely by hand, pulling data from multiple sources, reconciling it manually, and producing a static output that required significant effort each cycle. The process was slow, fragile, and difficult to scale.",
+   approach:"A collaborative effort brought together HR, data, and IT expertise to map the existing process, identify automation opportunities, and design a better solution from the ground up. The team built an automated data pipeline that ingests and transforms inputs from multiple sources, paired with a dynamic Power BI report that outputs clean, structured results on demand at multiple levels of detail.",
+   results:"The system went live and has been running reliably in production ever since. What once required manual effort across multiple steps and stakeholders now happens automatically. The report is accessible on demand, updates with each data refresh, and has become a central part of the operational process it was designed to support.",
+   metric:"A hands-free reporting system that turned a recurring manual burden into a reliable, automated process",
+   metricDesc:"Custom-built and production-ready, this system can be adapted by any team managing recurring operational data to eliminate manual effort and report with confidence."},
+
+  {id:4,title:"Measuring the Long-Term Impact of a Fellowship Program",cats:["Understanding"],types:["D&A","AI"],team:"Program Team",
+   summary:"Applied a rigorous, end-to-end analytics process to measure the downstream impact of a fellowship program, producing evidence-based insights that directly informed a key program decision and established a reusable methodology for any team managing fellowship grants.",
+   challenge:"Program leadership wanted to move beyond anecdotal evidence when evaluating whether their fellowship was achieving its core mission over the long term. The key question was clear, but the data needed to answer it was scattered, incomplete, and had never been systematically analyzed.",
+   approach:"Working closely with the program team, we identified the key success metric, scoped the study, and structured the data collection effort around sample fellowship classes spanning multiple decades. AI-assisted tools were used to enrich and categorize the dataset, and the data team performed a multi-dimensional analysis tracking fellow career trajectories at 5-year and 10-year intervals post-fellowship.",
+   results:"The analysis produced a findings report with clear, visualized insights into how effectively the program retained fellows in the field over time, broken down by class year, institution type, and career trajectory. The key stakeholder confirmed that the findings directly informed a significant program decision. The methodology is reusable and transferable to any team managing fellowship grants.",
+   metric:"Analytics-driven insights that directly informed a major program decision",
+   metricDesc:"A reusable impact measurement framework that gives any fellowship-funding team the tools to answer the question that matters most: is our investment making a lasting difference?"},
+
+  {id:5,title:"Pioneering AI Support for Grantees",cats:["Improvement"],types:["D&A","AI","Process"],team:"Program Team",
+   summary:"Turned a bold idea into a viable, actionable initiative, convening internal leaders across program, data, and technology to design a first-of-its-kind pilot that would equip grantees with AI tools and resources to strengthen their work and their ability to measure impact.",
+   challenge:"A program leader posed a forward-looking question: what if the organization could actively support grantees in adopting AI to improve how they operate and track their impact? The idea was compelling but undefined. It needed structure, a realistic delivery model, a participant strategy, and a way to understand grantee needs before any commitment was made.",
+   approach:"A small cross-functional group spanning program leadership, data, IT, and operations was convened to pressure-test the concept and shape it into something actionable. The group worked through problem definition, explored delivery models, scoped a pilot cohort, and produced a concrete next step: a grantee survey instrument designed to assess AI readiness and surface the support needs that would make the initiative most meaningful.",
+   results:"The engagement moved a pioneering idea from concept to proposition. A pilot framework was developed, a target participant group identified, and a survey instrument produced and delivered to the team for deployment. The initiative is now in the hands of program leadership to advance, with a clear foundation and evidence-gathering process already in place.",
+   metric:"A bold idea transformed into a structured, actionable initiative, ready to pilot",
+   metricDesc:"This case represents what becomes possible when internal expertise is convened around a novel challenge. No idea is too ambitious to explore, and this resource exists to help turn them into something real."},
+
+  {id:6,title:"From Curious to Capable: Hands-On Tool Adoption Sessions",cats:["Training"],types:["D&A","AI","Technology"],team:"Multiple Teams",
+   summary:"Turned hesitation into hands-on capability for staff members across the organization, through personalized workshop sessions on BI and AI tools that moved participants from awareness to confident, independent use.",
+   challenge:"Many staff had heard of BI and AI tools, and some had even completed formal training. But awareness alone was not enough. A mix of uncertainty about where to start, doubt about real-world applicability, and lack of hands-on experience kept these tools out of daily work. The gap between knowing a tool exists and actually using it productively is wider than most training programs address.",
+   approach:"Through one-on-one and small group workshop sessions, we worked directly on each participant actual tasks and datasets, not generic examples. For BI tools, sessions covered getting started, data preparation, and building the first meaningful visual together. For AI tools, we solved real problems live, with participants typing prompts themselves and seeing direct outputs. Each session included guidance on prompting techniques, tool capabilities, and practical workflows, with commentary throughout on what we were doing and why.",
+   results:"A meaningful number of staff members across different teams reached the threshold of independent tool adoption. Participants left each session with a working output, a clearer understanding of what the tool can do for them specifically, and the confidence to keep going on their own. In one case, a staff member used the session to begin building a BI dashboard for managing a device refresh cycle. In another, a team used an AI tool to process survey data and produce a structured analytical summary in a single sitting.",
+   metric:"Staff members moved from hesitation to confident, independent use of BI and AI tools",
+   metricDesc:"Hands-on sessions grounded in real work, not theory. Any staff member curious about these tools but unsure where to start can request a session and leave with something useful."},
+
+  {id:7,title:"Measuring What Matters in the Grant Construction Process",cats:["Improvement"],types:["D&A","Process"],team:"Program Team",
+   summary:"Helped a program team take the first critical step toward measuring what matters, translating a vague sense that their grant construction process had inefficiencies into a structured framework for identifying, tracking, and improving key process metrics.",
+   challenge:"The team suspected their grant construction timeline had become bloated with unnecessary steps and unclear deadlines, but had no systematic way to confirm it. Without a baseline for how long each stage actually takes, there was no foundation for improvement.",
+   approach:"Through a structured discovery process, we worked with program and grants management staff to identify the most meaningful process metrics, map what was measurable within existing systems versus outside them, and design a practical framework for capturing that data.",
+   results:"The engagement produced a metrics tracking resource that gave the team a concrete starting point, translating an abstract improvement goal into defined critical success factors and measurable KPIs. It surfaced process insights that informed an internal review of grant construction timelines and laid the groundwork for a data-driven pilot.",
+   metric:"Turned process intuition into a measurable framework, giving the team a foundation to identify inefficiencies and build a case for change",
+   metricDesc:"A practical metrics template and KPI framework that any program team can adapt to start measuring their own grant construction process."},
+
+  {id:8,title:"Evaluating and Integrating Technology Tools into Business Workflows",cats:["Efficiency","Improvement"],types:["Technology","Process"],team:"Multiple Teams",
+   summary:"Worked with teams across the organization to evaluate, test, and integrate technology tools into their workflows, ranging from AI-powered document analysis to process automation, giving each team clarity on what works before committing time or resources.",
+   challenge:"Teams often encountered tools they suspected could improve how they work, but had no structured way to evaluate whether a tool was truly fit for purpose. Others were unaware that better solutions existed for challenges they had simply accepted as part of their process. In both cases, the path from curiosity or pain point to a working solution was unclear.",
+   approach:"Through a collaborative evaluation process, we worked with each team to understand their specific workflow needs, identify candidate tools, and conduct hands-on testing using real data and actual use cases. Internal technology resources were brought in as needed to support access, setup, and integration. Outcomes ranged from validated adoption with a working proof of concept, to a documented set of recommendations that teams could act on at their own pace.",
+   results:"Teams walked away with one of three valuable outcomes: a tool fully tested and ready to deploy, a working proof of concept with a clear path to production, or an informed recommendation that saved them from investing in the wrong solution. In one case, an AI-powered document analysis tool was evaluated and adopted for ongoing invoice analysis. In another, a mail-merge toolkit was identified, tested, licensed, and deployed for a recurring external mailing process. A third engagement produced a technology recommendations document for program staff facing data capture challenges.",
+   metric:"Technology evaluated, tested, and integrated into real workflows, with expert guidance every step of the way",
+   metricDesc:"Whether a team brings a tool they want to explore or a problem they need solved, this engagement connects them with the internal expertise to evaluate options, run the tests, and move forward with confidence."},
+
+  {id:9,title:"Custom Data and Analytics Process for Teams",cats:["Improvement"],types:["D&A","Process"],team:"Multiple Teams",
+   summary:"Worked with teams across the organization to design a custom data and analytics process for each, giving every team a practical, flexible framework they could apply whenever a data-driven need arose.",
+   challenge:"Many teams had data-related goals but no structured way to pursue them. They lacked a repeatable process for identifying the right questions, collecting meaningful data, and turning it into insights that could inform decisions. Without a starting point tailored to their own workflows, most teams had no clear path forward.",
+   approach:"Through one-on-one consultation sessions with each team, we worked through their specific pain points, goals, and existing data resources. Drawing on a standard six-step analytics framework, we customized the process to fit each team, introduced a CSF-to-KPI approach for defining what to measure, and provided a metrics tracking template as a practical starting point.",
+   results:"Each team walked away with a structured, personalized D&A process and the tools to begin applying it independently. One team used the framework to develop a standard data capture template with key metric fields, adopted in a shared format for ongoing data collection. Over time, this produced an analytics-ready dataset that the team draws on whenever a specific analytical need arises. The framework is available to any team in the organization, regardless of function or data maturity.",
+   metric:"A tailored analytics process delivered to every team, giving each one the foundation to work with data confidently and independently",
+   metricDesc:"Teams across the organization already have a custom D&A process they can invoke whenever a data-driven need arises. Spots are available each quarter. Any team can request the same."},
+
+  {id:10,title:"Vendor Contract and Renewal Visibility",cats:["Efficiency"],types:["D&A","Process","Technology"],team:"Operations Team",
+   summary:"Enhanced an existing contract management system with a purpose-built dashboard, giving the operations team the visibility to flag renewals, reduce lapse risk, and make informed budget decisions.",
+   challenge:"Maintenance agreements, warranties, and vendor contracts were being tracked inconsistently with no centralized visibility. Critical renewal dates were easy to miss, spend was difficult to monitor, and there was no reliable way to distinguish urgent items from those that could wait.",
+   approach:"We evaluated the existing contract management system and designed a complementary Power BI dashboard to enhance it, surfacing expiring, expired, and auto-renewing agreements at a glance with spend breakdowns by category. The solution was built iteratively with the team and handed off ready to use.",
+   results:"The team now has a single, always-current view of their entire contract portfolio, organized by urgency, enriched with cancellation terms and spend data, and accessible on demand. Renewals no longer rely on memory or vendor reminders, and budget conversations are grounded in real data.",
+   metric:"Full contract visibility: renewals flagged, lapses prevented, and spend accounted for",
+   metricDesc:"An enhanced tracking system and dashboard that gave the operations team control over their vendor agreements for the first time."},
+
+  {id:11,title:"Building a Metrics Framework for Grant-Funded Media",cats:["Understanding"],types:["D&A","Process"],team:"Program Team",
+   summary:"A data discovery engagement did more than produce insights. It united program, communications, and analytics expertise into a working group that built a practical framework for evaluating grant-funded media and making smarter funding decisions.",
+   challenge:"Program teams were making funding decisions for media grants without a consistent way to evaluate performance or compare cost across grantees. There were no established benchmarks, no standard metrics to request from grantees, and no shared understanding of what good actually looked like in this space.",
+   approach:"Through a focused collaboration, a program team representative, an internal communications resource, and a data analyst combined their knowledge into one working group. Using real grant examples and live grantee data, the group identified the metrics that matter most, researched industry benchmarks, and developed practical tools grounded in actual funded work rather than theory.",
+   results:"The engagement produced a reusable measurement framework tailored to grant-funded media, complete with priority metrics, target ranges, ROI considerations, and guidance for collecting data from grantees. The approach is directly transferable to any program team that funds a specific category of work.",
+   metric:"From instinct to informed: a ready-to-use framework for evaluating grant-funded media with confidence",
+   metricDesc:"A practical metrics toolkit that any program team can adapt to bring structure, consistency, and evidence to funding decisions in specialized grant categories."},
+
+  {id:12,title:"Staff Voices That Shaped the Data and AI Training Program",cats:["Training"],types:["AI","Process"],team:"Multiple Teams",
+   summary:"Conversations in Data and AI Discovery meetings surfaced training interests and feedback that directly influenced the content, format, and direction of the organization-wide Data and AI Training Program, making it more relevant, more accessible, and more useful to the staff it serves.",
+   challenge:"Training programs risk becoming static and disconnected from what staff actually need. Without a direct channel for staff to voice their interests and learning gaps, even well-designed training can miss the mark. Many staff had emerging questions about new tools and approaches but no clear forum to surface them in a way that could lead to action.",
+   approach:"Data and AI Discovery meetings created an informal but powerful feedback loop. As participants shared their curiosity about new tools, their frustrations with existing training formats, and their learning preferences, those signals were captured and brought to the Data and AI Training committee. The feedback informed decisions about what to build, what to retire, and how to deliver content more effectively through the online learning management system used for the self-paced training program.",
+   results:"Staff interest in newly available AI tools surfaced through Data and AI Discovery discussions led directly to the development and rollout of a new training course, assigned to those who expressed interest and made available across the organization, where it was received positively. Feedback about training format prompted a shift away from a longer, more traditional learning track toward a shorter, more interactive AI-native module that delivers core learnings in a format staff find more engaging. General feedback from discovery meeting participants, many of whom also participate in the Data and AI Training cohort, has continued to inform annual training strategy and content decisions.",
+   metric:"Staff feedback turned into new courses, better formats, and a training program that evolves with the people it serves",
+   metricDesc:"Data and AI Discovery meetings are not just about data projects. They are a forum where training needs get heard, acted on, and built into the annual learning cycle available to all staff."}
+];
+
+var catColors = {"Understanding":"tag-cat-understanding","Improvement":"tag-cat-improvement","Efficiency":"tag-cat-efficiency","Training":"tag-cat-training"};
+var typeColors = {"D&A":"tag-type-da","AI":"tag-type-ai","Governance":"tag-type-governance","Process":"tag-type-process","Technology":"tag-type-technology"};
+var accentMap = {"Understanding":"#5a7a2e","Improvement":"#6b5bab","Efficiency":"#c49a1a","Training":"#3a3a3a"};
+var activeCat = "All", activeType = "All";
+
+function tagEl(label,cls){return "<span class='tag "+cls+"'>"+label+"</span>";}
+function buildTags(c){
+  var cats=c.cats.map(function(t){return tagEl(t,catColors[t]||"tag-cat-understanding");}).join("");
+  var types=c.types.map(function(t){return tagEl(t,typeColors[t]||"tag-type-da");}).join("");
+  return cats+"<span class='tag-divider'></span>"+types;
+}
+function buildCardTags(c){
+  return c.cats.map(function(t){return tagEl(t,catColors[t]||"tag-cat-understanding");}).join("");
+}
+function accentFor(c){return accentMap[c.cats[0]]||"#5a7a2e";}
+
+function renderFiltered(){
+  var q=document.getElementById("search").value.toLowerCase();
+  var filtered=cases.filter(function(c){
+    var mCat=activeCat==="All"||c.cats.indexOf(activeCat)>-1;
+    var mType=activeType==="All"||c.types.indexOf(activeType)>-1;
+    var mQ=!q||c.title.toLowerCase().indexOf(q)>-1||c.summary.toLowerCase().indexOf(q)>-1
+      ||c.cats.some(function(t){return t.toLowerCase().indexOf(q)>-1;})
+      ||c.types.some(function(t){return t.toLowerCase().indexOf(q)>-1;});
+    return mCat&&mType&&mQ;
+  });
+  var grid=document.getElementById("grid");
+  var nr=document.getElementById("no-results");
+  if(!filtered.length){grid.innerHTML="";nr.style.display="block";return;}
+  nr.style.display="none";
+  grid.innerHTML=filtered.map(function(c){
+    return "<div class='card' onclick='showDetail("+c.id+")'>"
+      +"<div class='card-top' style='background:"+accentFor(c)+"'></div>"
+      +"<div class='card-body'>"
+      +"<div class='card-tags'>"+buildCardTags(c)+"</div>"
+      +"<h3>"+c.title+"</h3>"
+      +"<p>"+c.summary+"</p>"
+      +"<div class='outcome'><div class='outcome-label'>Key outcome</div>"
+      +"<div class='outcome-value'>"+c.metric+"</div></div>"
+      +"</div>"
+      +"<div class='card-footer'><span class='card-meta'>"+c.team+"</span>"
+      +"<span class='card-link'>Read more</span></div>"
+      +"</div>";
+  }).join("");
+}
+
+function setFilter(dim,val,btn){
+  if(dim==="cat"){
+    activeCat=val;
+    document.querySelectorAll("#cat-filters .filter-btn").forEach(function(b){b.classList.remove("active-cat");});
+    btn.classList.add("active-cat");
+  }else{
+    activeType=val;
+    document.querySelectorAll("#cat-filters .filter-btn").forEach(function(b){b.classList.remove("active-type");});
+    btn.classList.add("active-type");
+  }
+  renderFiltered();
+}
+
+function showDetail(id){
+  var c=cases.filter(function(x){return x.id===id;})[0];
+  document.getElementById("d-tags").innerHTML=buildTags(c);
+  document.getElementById("d-title").textContent=c.title;
+  document.getElementById("d-meta").textContent=c.team;
+  document.getElementById("d-challenge").textContent=c.challenge;
+  document.getElementById("d-approach").textContent=c.approach;
+  document.getElementById("d-results").textContent=c.results;
+  document.getElementById("d-metric").textContent=c.metric;
+  document.getElementById("d-metric-desc").textContent=c.metricDesc;
+  document.getElementById("list-view").style.display="none";
+  document.getElementById("detail-view").style.display="block";
+}
+
+function showList(){
+  document.getElementById("list-view").style.display="block";
+  document.getElementById("detail-view").style.display="none";
+}
+
+renderFiltered();
+</script>
+</body>
+</html>
