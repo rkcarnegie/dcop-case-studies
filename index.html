@@ -10,9 +10,13 @@
   body { font-family: 'Lato', sans-serif; background: #f5f3ee; color: #2c2c2c; }
   .page-wrap { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
   .page-header { padding: 48px 0 28px; border-bottom: 2px solid #5a7a2e; text-align: center; }
-  .page-label { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #7a8c5e; margin-bottom: 10px; font-weight: 700; }
+  .page-label { font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: #7a8c5e; margin-bottom: 10px; font-weight: 700; }
   .page-header h1 { font-family: 'Raleway', sans-serif; font-size: 32px; font-weight: 700; color: #2c3a1e; line-height: 1.2; margin-bottom: 10px; }
-  .page-header p { font-size: 16px; color: #5a5a4a; line-height: 1.6; }
+  .page-header p { font-size: 16px; color: #5a5a4a; line-height: 1.6; margin-bottom: 10px; }
+  .page-footer { padding: 24px 0 48px; text-align: center; border-top: 1px solid #ddd8cc; margin-top: 8px; }
+  .page-footer a { color: #5a7a2e; font-weight: 700; text-decoration: none; font-size: 14px; }
+  .page-footer a:hover { text-decoration: underline; }
+  .page-footer { font-size: 14px; color: #7a8c5e; }
   .filter-section { padding: 20px 0; text-align: center; background: #f5f3ee; border-bottom: 1px solid #ddd8cc; }
   .filter-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; align-items: center; }
   .filter-group-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8a8a7a; display: flex; align-items: center; }
@@ -96,6 +100,7 @@
     </div>
     <div class="grid" id="grid"></div>
     <div class="no-results" id="no-results">No case studies match your search.</div>
+    <div class="page-footer">Questions or requests? Contact us at <a href="mailto:datalab@carnegie.org">datalab@carnegie.org</a></div>
   </div>
 </div>
 
@@ -122,32 +127,32 @@
 
 <script>
 var cases = [
-  {id:1,title:"Payment Management Dashboard",cats:["Efficiency","Understanding"],types:["D&A","Process"],team:"Support Team",
-   summary:"Replaced fragmented payment tracking with a purpose-built dashboard that gives the Support team a clear view of every payment in the pipeline, reducing back-and-forth and enabling faster, more confident action.",
+  {id:1,title:"Payment Management Dashboard",cats:["Efficiency","Understanding"],types:["D&A","Process"],team:"Operations Team",
+   summary:"The Grants Management team needed a better way to track grantee payments across multiple stages and conditions. We worked with this DCoP to develop a real-time dashboard that consolidated the entire payment pipeline into one clear, centralized view, reducing back-and-forth and enabling faster, more confident action.",
    challenge:"The team lacked a consolidated view of grantee payments across different stages and conditions. Visibility gaps created inefficiencies; staff spent time chasing statuses, reconciling information across systems, and managing exceptions reactively rather than proactively.",
-   approach:"Through a structured discovery and iterative build process, we worked closely with the Support team to understand their workflow and translate it into a Power BI dashboard connected directly to the grants management system. Each component was validated against real data before going to production.",
+   approach:"Through a structured discovery and iterative build process, we worked closely with the Grants Management team to understand their workflow and translate it into a dashboard connected directly to the grants management system. Each component was validated against real data before going to production.",
    results:"The published dashboard consolidates upcoming payments, flagged payments, past due payments, and organizations with overdue reports into a single, always-current view filterable by program area. The team now has the visibility they need to plan ahead, catch issues early, and spend less time on manual follow-up.",
    metric:"Transformed payment tracking from reactive to proactive, giving the team visibility, control, and time back",
-   metricDesc:"A dashboard that surfaces the full payment pipeline in one place, giving the Support team the clarity and control to act with confidence at every stage."},
+   metricDesc:"A dashboard that surfaces the full payment pipeline in one place, giving the Grants Management team the clarity and control to act with confidence at every stage."},
 
-  {id:2,title:"Unlocking Insights from Program Application Data",cats:["Understanding","Improvement"],types:["D&A","AI"],team:"Program Management",
-   summary:"Transformed multi-year application data into a strategic findings report that gave program leadership clear, evidence-based direction for refining a competitive grant program, establishing a repeatable model for doing it every year.",
+  {id:2,title:"Unlocking Insights from Program Application Data",cats:["Understanding","Improvement"],types:["D&A","AI"],team:"Program Team",
+   summary:"Transformed multi-year application data into a strategic findings report that gave program team leadership clear, evidence-based direction for refining a competitive grant program, establishing a repeatable model for doing it every year.",
    challenge:"Program leadership wanted to move beyond intuition when evaluating what makes applications succeed. The insights were buried in a complex dataset spanning hundreds of applicants, multiple reviewers, and dozens of application attributes, with no existing process for systematically learning from that data.",
    approach:"Through structured consultation sessions, we helped the team sharpen their business questions and confirm the right dataset. We cleaned and unified the data, applied AI-assisted classification to surface thematic patterns, and performed a multi-dimensional analysis comparing successful applications against the rest across all key features.",
    results:"The engagement produced a strategic findings report, a first-of-its-kind deliverable for the program. It identified structural patterns that predict success, revealed underserved recruitment opportunities, and surfaced year-over-year shifts in what the selection process rewards. Leadership confirmed they will repeat this analysis annually as each new cohort is selected.",
    metric:"Actionable insights that deepened understanding and drove meaningful program refinement",
    metricDesc:"A findings report that surfaced what the data had been hiding, equipping the program team with the evidence they needed to steer smarter, recruit better, and invest with confidence going forward."},
 
-  {id:3,title:"From Manual to Automated: A Custom Operational Reporting System",cats:["Efficiency","Improvement"],types:["D&A","Process","Technology"],team:"Support Team",
-   summary:"Replaced a time-consuming, error-prone manual reporting process with a fully automated system, eliminating the inefficiency of ad-hoc data gathering and delivering a clean, dynamic report that runs itself.",
-   challenge:"The team was managing a recurring operational reporting process entirely by hand, pulling data from multiple sources, reconciling it manually, and producing a static output that required significant effort each cycle. The process was slow, fragile, and difficult to scale.",
-   approach:"A collaborative effort brought together HR, data, and IT expertise to map the existing process, identify automation opportunities, and design a better solution from the ground up. The team built an automated data pipeline that ingests and transforms inputs from multiple sources, paired with a dynamic Power BI report that outputs clean, structured results on demand at multiple levels of detail.",
+  {id:3,title:"From Manual to Automated: A Custom Operational Reporting System",cats:["Efficiency","Improvement"],types:["D&A","Process","Technology"],team:"Operations Team",
+   summary:"What once required significant manual effort across multiple steps and stakeholders now happens automatically. This DCoP replaced a fragile, time-consuming reporting process with a fully automated system that delivers clean, dynamic results on demand.",
+   challenge:"The operations team was managing a recurring operational reporting process entirely by hand, pulling data from multiple sources, reconciling it manually, and producing a static output that required significant effort each cycle. The process was slow, fragile, and difficult to scale.",
+   approach:"This collaborative effort brought together members of this DCoP, data, and IT expertise to map the existing process, identify automation opportunities, and design a better solution from the ground up. The team built an automated data pipeline that ingests and transforms inputs from multiple sources, paired with a dynamic report that outputs clean, structured results on demand at multiple levels of detail.",
    results:"The system went live and has been running reliably in production ever since. What once required manual effort across multiple steps and stakeholders now happens automatically. The report is accessible on demand, updates with each data refresh, and has become a central part of the operational process it was designed to support.",
    metric:"A hands-free reporting system that turned a recurring manual burden into a reliable, automated process",
    metricDesc:"Custom-built and production-ready, this system can be adapted by any team managing recurring operational data to eliminate manual effort and report with confidence."},
 
   {id:4,title:"Measuring the Long-Term Impact of a Fellowship Program",cats:["Understanding"],types:["D&A","AI"],team:"Program Team",
-   summary:"Applied a rigorous, end-to-end analytics process to measure the downstream impact of a fellowship program, producing evidence-based insights that directly informed a key program decision and established a reusable methodology for any team managing fellowship grants.",
+   summary:"Is our investment making a lasting difference? A program team applied a rigorous, end-to-end analytics process to answer that question about their fellowship for the first time, producing insights that directly informed a significant program decision.",
    challenge:"Program leadership wanted to move beyond anecdotal evidence when evaluating whether their fellowship was achieving its core mission over the long term. The key question was clear, but the data needed to answer it was scattered, incomplete, and had never been systematically analyzed.",
    approach:"Working closely with the program team, we identified the key success metric, scoped the study, and structured the data collection effort around sample fellowship classes spanning multiple decades. AI-assisted tools were used to enrich and categorize the dataset, and the data team performed a multi-dimensional analysis tracking fellow career trajectories at 5-year and 10-year intervals post-fellowship.",
    results:"The analysis produced a findings report with clear, visualized insights into how effectively the program retained fellows in the field over time, broken down by class year, institution type, and career trajectory. The key stakeholder confirmed that the findings directly informed a significant program decision. The methodology is reusable and transferable to any team managing fellowship grants.",
@@ -155,7 +160,7 @@ var cases = [
    metricDesc:"A reusable impact measurement framework that gives any fellowship-funding team the tools to answer the question that matters most: is our investment making a lasting difference?"},
 
   {id:5,title:"Pioneering AI Support for Grantees",cats:["Improvement"],types:["D&A","AI","Process"],team:"Program Team",
-   summary:"Turned a bold idea into a viable, actionable initiative, convening internal leaders across program, data, and technology to design a first-of-its-kind pilot that would equip grantees with AI tools and resources to strengthen their work and their ability to measure impact.",
+   summary:"What if the organization could actively support grantees in adopting AI to strengthen their work and track their impact? This DCoP turned that question into a structured, actionable pilot initiative with a real participant strategy and a survey instrument ready for deployment.",
    challenge:"A program leader posed a forward-looking question: what if the organization could actively support grantees in adopting AI to improve how they operate and track their impact? The idea was compelling but undefined. It needed structure, a realistic delivery model, a participant strategy, and a way to understand grantee needs before any commitment was made.",
    approach:"A small cross-functional group spanning program leadership, data, IT, and operations was convened to pressure-test the concept and shape it into something actionable. The group worked through problem definition, explored delivery models, scoped a pilot cohort, and produced a concrete next step: a grantee survey instrument designed to assess AI readiness and surface the support needs that would make the initiative most meaningful.",
    results:"The engagement moved a pioneering idea from concept to proposition. A pilot framework was developed, a target participant group identified, and a survey instrument produced and delivered to the team for deployment. The initiative is now in the hands of program leadership to advance, with a clear foundation and evidence-gathering process already in place.",
@@ -163,15 +168,15 @@ var cases = [
    metricDesc:"This case represents what becomes possible when internal expertise is convened around a novel challenge. No idea is too ambitious to explore, and this resource exists to help turn them into something real."},
 
   {id:6,title:"From Curious to Capable: Hands-On Tool Adoption Sessions",cats:["Training"],types:["D&A","AI","Technology"],team:"Multiple Teams",
-   summary:"Turned hesitation into hands-on capability for staff members across the organization, through personalized workshop sessions on BI and AI tools that moved participants from awareness to confident, independent use.",
+   summary:"Knowing a tool exists and actually using it productively are two very different things. Through personalized, hands-on sessions grounded in real tasks, staff members across the organization moved from curiosity and hesitation to confident, independent use of BI and AI tools.",
    challenge:"Many staff had heard of BI and AI tools, and some had even completed formal training. But awareness alone was not enough. A mix of uncertainty about where to start, doubt about real-world applicability, and lack of hands-on experience kept these tools out of daily work. The gap between knowing a tool exists and actually using it productively is wider than most training programs address.",
-   approach:"Through one-on-one and small group workshop sessions, we worked directly on each participant actual tasks and datasets, not generic examples. For BI tools, sessions covered getting started, data preparation, and building the first meaningful visual together. For AI tools, we solved real problems live, with participants typing prompts themselves and seeing direct outputs. Each session included guidance on prompting techniques, tool capabilities, and practical workflows, with commentary throughout on what we were doing and why.",
-   results:"A meaningful number of staff members across different teams reached the threshold of independent tool adoption. Participants left each session with a working output, a clearer understanding of what the tool can do for them specifically, and the confidence to keep going on their own. In one case, a staff member used the session to begin building a BI dashboard for managing a device refresh cycle. In another, a team used an AI tool to process survey data and produce a structured analytical summary in a single sitting.",
+   approach:"Through one-on-one and small group workshop sessions, we worked directly on each participant actual tasks and datasets, not generic examples. For BI tools, sessions covered getting started, data preparation, and building the first meaningful visual together. For AI tools, we solved real problems live, with participants typing prompts themselves and seeing direct outputs. Each session included guidance on prompting techniques, tool capabilities, and practical workflows.",
+   results:"A meaningful number of staff members across different teams reached the threshold of independent tool adoption. Participants left each session with a working output, a clearer understanding of what the tool can do for them specifically, and the confidence to keep going on their own. In one case, a staff member used the session to begin building a dashboard for managing a device refresh cycle. In another, a team used an AI tool to process survey data and produce a structured analytical summary in a single sitting.",
    metric:"Staff members moved from hesitation to confident, independent use of BI and AI tools",
    metricDesc:"Hands-on sessions grounded in real work, not theory. Any staff member curious about these tools but unsure where to start can request a session and leave with something useful."},
 
   {id:7,title:"Measuring What Matters in the Grant Construction Process",cats:["Improvement"],types:["D&A","Process"],team:"Program Team",
-   summary:"Helped a program team take the first critical step toward measuring what matters, translating a vague sense that their grant construction process had inefficiencies into a structured framework for identifying, tracking, and improving key process metrics.",
+   summary:"Without a baseline for how long each stage of the grant construction process actually takes, there is no foundation for improvement. This DCoP developed a structured framework for measuring the process from end to end, translating a vague sense of inefficiency into defined metrics and a concrete path forward.",
    challenge:"The team suspected their grant construction timeline had become bloated with unnecessary steps and unclear deadlines, but had no systematic way to confirm it. Without a baseline for how long each stage actually takes, there was no foundation for improvement.",
    approach:"Through a structured discovery process, we worked with program and grants management staff to identify the most meaningful process metrics, map what was measurable within existing systems versus outside them, and design a practical framework for capturing that data.",
    results:"The engagement produced a metrics tracking resource that gave the team a concrete starting point, translating an abstract improvement goal into defined critical success factors and measurable KPIs. It surfaced process insights that informed an internal review of grant construction timelines and laid the groundwork for a data-driven pilot.",
@@ -179,31 +184,31 @@ var cases = [
    metricDesc:"A practical metrics template and KPI framework that any program team can adapt to start measuring their own grant construction process."},
 
   {id:8,title:"Evaluating and Integrating Technology Tools into Business Workflows",cats:["Efficiency","Improvement"],types:["Technology","Process"],team:"Multiple Teams",
-   summary:"Worked with teams across the organization to evaluate, test, and integrate technology tools into their workflows, ranging from AI-powered document analysis to process automation, giving each team clarity on what works before committing time or resources.",
+   summary:"Curious about a tool, or sitting on a workflow problem that technology might solve? Each of these DCoPs conducted a hands-on evaluation using real data and walked away with a clear answer and a concrete path forward, without committing time or budget upfront.",
    challenge:"Teams often encountered tools they suspected could improve how they work, but had no structured way to evaluate whether a tool was truly fit for purpose. Others were unaware that better solutions existed for challenges they had simply accepted as part of their process. In both cases, the path from curiosity or pain point to a working solution was unclear.",
-   approach:"Through a collaborative evaluation process, we worked with each team to understand their specific workflow needs, identify candidate tools, and conduct hands-on testing using real data and actual use cases. Internal technology resources were brought in as needed to support access, setup, and integration. Outcomes ranged from validated adoption with a working proof of concept, to a documented set of recommendations that teams could act on at their own pace.",
-   results:"Teams walked away with one of three valuable outcomes: a tool fully tested and ready to deploy, a working proof of concept with a clear path to production, or an informed recommendation that saved them from investing in the wrong solution. In one case, an AI-powered document analysis tool was evaluated and adopted for ongoing invoice analysis. In another, a mail-merge toolkit was identified, tested, licensed, and deployed for a recurring external mailing process. A third engagement produced a technology recommendations document for program staff facing data capture challenges.",
+   approach:"Through a collaborative evaluation process, we worked with each team to understand their specific workflow needs, identify candidate tools, and conduct hands-on testing using real data and actual use cases. Internal technology resources were brought in as needed to support access, setup, and integration.",
+   results:"Teams walked away with one of three valuable outcomes: a tool fully tested and ready to deploy, a working proof of concept with a clear path to production, or an informed recommendation that saved them from investing in the wrong solution. In one case, an AI-powered document analysis tool was evaluated and adopted for ongoing invoice analysis. In another, a mail-merge toolkit was identified, tested, licensed, and deployed for a recurring external mailing process.",
    metric:"Technology evaluated, tested, and integrated into real workflows, with expert guidance every step of the way",
    metricDesc:"Whether a team brings a tool they want to explore or a problem they need solved, this engagement connects them with the internal expertise to evaluate options, run the tests, and move forward with confidence."},
 
   {id:9,title:"Custom Data and Analytics Process for Teams",cats:["Improvement"],types:["D&A","Process"],team:"Multiple Teams",
-   summary:"Worked with teams across the organization to design a custom data and analytics process for each, giving every team a practical, flexible framework they could apply whenever a data-driven need arose.",
+   summary:"Across the organization, teams had data-related goals but no structured process for pursuing them. Each DCoP developed a customized analytics process tailored to their specific workflows, creating a practical, flexible framework they could apply whenever a data-driven need arose.",
    challenge:"Many teams had data-related goals but no structured way to pursue them. They lacked a repeatable process for identifying the right questions, collecting meaningful data, and turning it into insights that could inform decisions. Without a starting point tailored to their own workflows, most teams had no clear path forward.",
    approach:"Through one-on-one consultation sessions with each team, we worked through their specific pain points, goals, and existing data resources. Drawing on a standard six-step analytics framework, we customized the process to fit each team, introduced a CSF-to-KPI approach for defining what to measure, and provided a metrics tracking template as a practical starting point.",
-   results:"Each team walked away with a structured, personalized D&A process and the tools to begin applying it independently. One team used the framework to develop a standard data capture template with key metric fields, adopted in a shared format for ongoing data collection. Over time, this produced an analytics-ready dataset that the team draws on whenever a specific analytical need arises. The framework is available to any team in the organization, regardless of function or data maturity.",
+   results:"Each team walked away with a structured, personalized process and the tools to begin applying it independently. One team used the framework to develop a standard data capture template with key metric fields, adopted in a shared format for ongoing data collection. Over time, this produced an analytics-ready dataset that the team draws on whenever a specific analytical need arises.",
    metric:"A tailored analytics process delivered to every team, giving each one the foundation to work with data confidently and independently",
-   metricDesc:"Teams across the organization already have a custom D&A process they can invoke whenever a data-driven need arises. Spots are available each quarter. Any team can request the same."},
+   metricDesc:"Teams across the organization already have a custom process they can invoke whenever a data-driven need arises. Spots are available each quarter. Any team can request the same."},
 
   {id:10,title:"Vendor Contract and Renewal Visibility",cats:["Efficiency"],types:["D&A","Process","Technology"],team:"Operations Team",
-   summary:"Enhanced an existing contract management system with a purpose-built dashboard, giving the operations team the visibility to flag renewals, reduce lapse risk, and make informed budget decisions.",
+   summary:"Vendor contracts, maintenance agreements, and renewal deadlines were scattered with no centralized place to see what needed attention. This DCoP enhanced their existing system with a purpose-built dashboard, bringing full portfolio visibility and proactive renewal management into one place.",
    challenge:"Maintenance agreements, warranties, and vendor contracts were being tracked inconsistently with no centralized visibility. Critical renewal dates were easy to miss, spend was difficult to monitor, and there was no reliable way to distinguish urgent items from those that could wait.",
-   approach:"We evaluated the existing contract management system and designed a complementary Power BI dashboard to enhance it, surfacing expiring, expired, and auto-renewing agreements at a glance with spend breakdowns by category. The solution was built iteratively with the team and handed off ready to use.",
+   approach:"We evaluated the existing contract management system and designed a complementary dashboard to enhance it, surfacing expiring, expired, and auto-renewing agreements at a glance with spend breakdowns by category. The solution was built iteratively with the team and handed off ready to use.",
    results:"The team now has a single, always-current view of their entire contract portfolio, organized by urgency, enriched with cancellation terms and spend data, and accessible on demand. Renewals no longer rely on memory or vendor reminders, and budget conversations are grounded in real data.",
    metric:"Full contract visibility: renewals flagged, lapses prevented, and spend accounted for",
    metricDesc:"An enhanced tracking system and dashboard that gave the operations team control over their vendor agreements for the first time."},
 
   {id:11,title:"Building a Metrics Framework for Grant-Funded Media",cats:["Understanding"],types:["D&A","Process"],team:"Program Team",
-   summary:"A data discovery engagement did more than produce insights. It united program, communications, and analytics expertise into a working group that built a practical framework for evaluating grant-funded media and making smarter funding decisions.",
+   summary:"Evaluating grant-funded media projects requires more than intuition, but consistent benchmarks rarely exist. This DCoP brought together program, communications, and analytics expertise to build a practical measurement framework from the ground up, grounded in real funded work.",
    challenge:"Program teams were making funding decisions for media grants without a consistent way to evaluate performance or compare cost across grantees. There were no established benchmarks, no standard metrics to request from grantees, and no shared understanding of what good actually looked like in this space.",
    approach:"Through a focused collaboration, a program team representative, an internal communications resource, and a data analyst combined their knowledge into one working group. Using real grant examples and live grantee data, the group identified the metrics that matter most, researched industry benchmarks, and developed practical tools grounded in actual funded work rather than theory.",
    results:"The engagement produced a reusable measurement framework tailored to grant-funded media, complete with priority metrics, target ranges, ROI considerations, and guidance for collecting data from grantees. The approach is directly transferable to any program team that funds a specific category of work.",
@@ -211,10 +216,10 @@ var cases = [
    metricDesc:"A practical metrics toolkit that any program team can adapt to bring structure, consistency, and evidence to funding decisions in specialized grant categories."},
 
   {id:12,title:"Staff Voices That Shaped the Data and AI Training Program",cats:["Training"],types:["AI","Process"],team:"Multiple Teams",
-   summary:"Conversations in Data and AI Discovery meetings surfaced training interests and feedback that directly influenced the content, format, and direction of the organization-wide Data and AI Training Program, making it more relevant, more accessible, and more useful to the staff it serves.",
+   summary:"Staff participation in Data and AI Discovery meetings did more than surface project ideas. The training interests and feedback shared in those conversations directly shaped new course offerings, improved delivery formats, and a Data and AI Training Program that continues to evolve with the people it serves.",
    challenge:"Training programs risk becoming static and disconnected from what staff actually need. Without a direct channel for staff to voice their interests and learning gaps, even well-designed training can miss the mark. Many staff had emerging questions about new tools and approaches but no clear forum to surface them in a way that could lead to action.",
-   approach:"Data and AI Discovery meetings created an informal but powerful feedback loop. As participants shared their curiosity about new tools, their frustrations with existing training formats, and their learning preferences, those signals were captured and brought to the Data and AI Training committee. The feedback informed decisions about what to build, what to retire, and how to deliver content more effectively through the online learning management system used for the self-paced training program.",
-   results:"Staff interest in newly available AI tools surfaced through Data and AI Discovery discussions led directly to the development and rollout of a new training course, assigned to those who expressed interest and made available across the organization, where it was received positively. Feedback about training format prompted a shift away from a longer, more traditional learning track toward a shorter, more interactive AI-native module that delivers core learnings in a format staff find more engaging. General feedback from discovery meeting participants, many of whom also participate in the Data and AI Training cohort, has continued to inform annual training strategy and content decisions.",
+   approach:"Data and AI Discovery meetings created an informal but powerful feedback loop. As participants shared their curiosity about new tools, their frustrations with existing training formats, and their learning preferences, those signals were captured and brought to the Data and AI Training committee. The feedback informed decisions about what to build, what to retire, and how to deliver content more effectively.",
+   results:"Staff interest in newly available AI tools surfaced through discovery discussions led directly to the development and rollout of a new training course, assigned to those who expressed interest and made available across the organization. Feedback about training format prompted a shift toward a shorter, more interactive module that delivers core learnings in a format staff find more engaging.",
    metric:"Staff feedback turned into new courses, better formats, and a training program that evolves with the people it serves",
    metricDesc:"Data and AI Discovery meetings are not just about data projects. They are a forum where training needs get heard, acted on, and built into the annual learning cycle available to all staff."}
 ];
@@ -241,6 +246,7 @@ function renderFiltered(){
     var mCat=activeCat==="All"||c.cats.indexOf(activeCat)>-1;
     var mType=activeType==="All"||c.types.indexOf(activeType)>-1;
     var mQ=!q||c.title.toLowerCase().indexOf(q)>-1||c.summary.toLowerCase().indexOf(q)>-1
+      ||c.team.toLowerCase().indexOf(q)>-1
       ||c.cats.some(function(t){return t.toLowerCase().indexOf(q)>-1;})
       ||c.types.some(function(t){return t.toLowerCase().indexOf(q)>-1;});
     return mCat&&mType&&mQ;
@@ -290,12 +296,26 @@ function showDetail(id){
   document.getElementById("d-metric-desc").textContent=c.metricDesc;
   document.getElementById("list-view").style.display="none";
   document.getElementById("detail-view").style.display="block";
+  history.pushState({page:"detail",id:id}, "", "#case-"+id);
+  window.scrollTo(0,0);
 }
 
 function showList(){
   document.getElementById("list-view").style.display="block";
   document.getElementById("detail-view").style.display="none";
+  history.pushState({page:"list"}, "", "#");
+  window.scrollTo(0,0);
 }
+
+window.addEventListener("popstate", function(e){
+  if(e.state && e.state.page==="detail"){
+    showDetail(e.state.id);
+  } else {
+    document.getElementById("list-view").style.display="block";
+    document.getElementById("detail-view").style.display="none";
+    window.scrollTo(0,0);
+  }
+});
 
 renderFiltered();
 </script>
